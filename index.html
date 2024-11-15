@@ -71,7 +71,105 @@
             <button onclick="nettoyer('sans masque')">Sans masque</button>
             <p id="cleanMessage"></p>
         </div>
+        <div id="phase4" class="phase hidden">
+            <h2>Phase 4 : Quiz sur les éruptions volcaniques</h2>
+            <p>Quel est le volcan le plus actif du monde ?</p>
+            <button onclick="quiz('Kilauea')">Kilauea</button>
+            <button onclick="quiz('Etna')">Etna</button>
+            <button onclick="quiz('Vésuve')">Vésuve</button>
+            <p id="quizMessage1"></p>
+        </div>
+        <div id="phase5" class="phase hidden">
+            <p>En quelle année le volcan Krakatoa a-t-il connu sa célèbre éruption ?</p>
+            <button onclick="quiz('1883')">1883</button>
+            <button onclick="quiz('1923')">1923</button>
+            <button onclick="quiz('1953')">1953</button>
+            <p id="quizMessage2"></p>
+        </div>
+        <div id="phase6" class="phase hidden">
+            <p>Qu'est-ce que la lave ?</p>
+            <button onclick="quiz('Roche en fusion')">Roche en fusion</button>
+            <button onclick="quiz('Gaz chaud')">Gaz chaud</button>
+            <button onclick="quiz('Cendres volcaniques')">Cendres volcaniques</button>
+            <p id="quizMessage3"></p>
+        </div>
+        <div id="phase7" class="phase hidden">
+            <h2>Phase Finale : Félicitations</h2>
+            <p>Félicitations, vous avez survécu à l'éruption volcanique !</p>
+            <p>Vous avez pris les bonnes décisions et vous avez appris à vous préparer et à réagir correctement.</p>
+            <p>Merci d'avoir joué. N'oubliez pas de toujours être prêt et informé.</p>
+        </div>
     </div>
-    <script src="game.js"></script>
+    <script>
+        function checkKit() {
+            const kitMessage = document.getElementById('kitMessage');
+            const hasEau = document.getElementById('eau').checked;
+            const hasNourriture = document.getElementById('nourriture').checked;
+            const hasMedicaments = document.getElementById('medicaments').checked;
+            const hasVetements = document.getElementById('vetements').checked;
+            const hasDocuments = document.getElementById('documents').checked;
+
+            if (hasEau && hasNourriture && hasMedicaments && hasVetements && hasDocuments) {
+                kitMessage.textContent = 'Vous avez correctement préparé votre kit !';
+                document.getElementById('phase1').classList.add('hidden');
+                document.getElementById('phase2').classList.remove('hidden');
+            } else {
+                kitMessage.textContent = 'Assurez-vous d\'inclure tous les éléments dans votre kit d\'urgence.';
+            }
+        }
+
+        function evacuer(response) {
+            const evacMessage = document.getElementById('evacMessage');
+            if (response === 'oui') {
+                evacMessage.textContent = 'Vous avez évacué en sécurité';
+                document.getElementById('phase2').classList.add('hidden');
+                document.getElementById('phase3').classList.remove('hidden');
+            } else {
+                evacMessage.textContent = 'Vous êtes en danger, évacuez immédiatement !';
+            }
+        }
+
+        function nettoyer(response) {
+            const cleanMessage = document.getElementById('cleanMessage');
+            if (response === 'avec un masque') {
+                cleanMessage.textContent = 'Bonne réponse, vous êtes en sécurité';
+                document.getElementById('phase3').classList.add('hidden');
+                document.getElementById('phase4').classList.remove('hidden');
+            } else {
+                cleanMessage.textContent = 'Mauvaise réponse, portez un masque pour votre sécurité';
+            }
+        }
+
+        function quiz(answer) {
+            if (document.getElementById('phase4').classList.contains('hidden') === false) {
+                const quizMessage1 = document.getElementById('quizMessage1');
+                if (answer === 'Kilauea') {
+                    quizMessage1.textContent = 'Bonne réponse !';
+                } else {
+                    quizMessage1.textContent = 'Mauvaise réponse, le bon choix était Kilauea.';
+                }
+                document.getElementById('phase4').classList.add('hidden');
+                document.getElementById('phase5').classList.remove('hidden');
+            } else if (document.getElementById('phase5').classList.contains('hidden') === false) {
+                const quizMessage2 = document.getElementById('quizMessage2');
+                if (answer === '1883') {
+                    quizMessage2.textContent = 'Bonne réponse !';
+                } else {
+                    quizMessage2.textContent = 'Mauvaise réponse, le bon choix était 1883.';
+                }
+                document.getElementById('phase5').classList.add('hidden');
+                document.getElementById('phase6').classList.remove('hidden');
+            } else if (document.getElementById('phase6').classList.contains('hidden') === false) {
+                const quizMessage3 = document.getElementById('quizMessage3');
+                if (answer === 'Roche en fusion') {
+                    quizMessage3.textContent = 'Bonne réponse !';
+                } else {
+                    quizMessage3.textContent = 'Mauvaise réponse, le bon choix était Roche en fusion.';
+                }
+                document.getElementById('phase6').classList.add('hidden');
+                document.getElementById('phase7').classList.remove('hidden');
+            }
+        }
+    </script>
 </body>
 </html>
