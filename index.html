@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Survivre à une éruption volcanique</title>
+    <style>
+        body { 
+            font-family: Arial, sans-serif; 
+            background-color: #f4f4f4; 
+            color: #333; 
+            text-align: center; 
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 2.5em;
+            color: #e63946;
+        }
+        .phase {
+            margin: 20px 0;
+        }
+        button { 
+            margin: 10px; 
+            padding: 10px 20px;
+            background-color: #e63946; 
+            color: white; 
+            border: none; 
+            border-radius: 5px; 
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #d62828;
+        }
+        .hidden { 
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Survivre à une éruption volcanique</h1>
+        <div id="phase1" class="phase">
+            <h2>Phase 1 : Préparation</h2>
+            <p>Constituer un kit d'urgence. Quels objets voulez-vous inclure ?</p>
+            <input type="checkbox" id="eau" name="kit" value="eau"> Eau<br>
+            <input type="checkbox" id="nourriture" name="kit" value="nourriture"> Nourriture<br>
+            <input type="checkbox" id="medicaments" name="kit" value="medicaments"> Médicaments<br>
+            <input type="checkbox" id="vetements" name="kit" value="vetements"> Vêtements<br>
+            <input type="checkbox" id="documents" name="kit" value="documents"> Documents<br>
+            <button onclick="checkKit()">Soumettre</button>
+            <p id="kitMessage"></p>
+        </div>
+        <div id="phase2" class="phase hidden">
+            <h2>Phase 2 : Pendant l'éruption</h2>
+            <p>Voulez-vous évacuer maintenant ?</p>
+            <button onclick="evacuer('oui')">Oui</button>
+            <button onclick="evacuer('non')">Non</button>
+            <p id="evacMessage"></p>
+        </div>
+        <div id="phase3" class="phase hidden">
+            <h2>Phase 3 : Après l'éruption</h2>
+            <p>Comment allez-vous nettoyer les cendres ?</p>
+            <button onclick="nettoyer('avec un masque')">Avec un masque</button>
+            <button onclick="nettoyer('sans masque')">Sans masque</button>
+            <p id="cleanMessage"></p>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html>
